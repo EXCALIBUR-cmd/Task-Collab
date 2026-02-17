@@ -26,7 +26,6 @@ services:
   - type: web
     name: taskcollab-frontend
     env: static
-    plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: build
     rootDir: frontend
