@@ -1,0 +1,47 @@
+services:
+  # Backend API + Socket.io
+  - type: web
+    name: taskcollab-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run migrate
+    startCommand: npm start
+    rootDir: backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: taskcollab-db
+          property: connectionString
+      - key: FRONTEND_URL
+        value: https://taskcollab-frontend.onrender.com
+
+  # Frontend (Static Site)
+  - type: web
+    name: taskcollab-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+    rootDir: frontend
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://taskcollab-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  # PostgreSQL Database
+  - name: taskcollab-db
+    plan: free
+    databaseName: taskcollab
+    user: taskcollab

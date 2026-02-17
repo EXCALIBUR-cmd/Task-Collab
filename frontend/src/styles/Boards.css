@@ -1,0 +1,190 @@
+.boards-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  animation: gradientFlow 20s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.boards-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  color: white;
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.6s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity:1;
+  }
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.boards-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.boards-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.boards-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 400px;
+  padding: 12px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.board-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  animation: cardFadeIn 0.5s ease;
+}
+
+.board-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.board-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
+  border-color: #667eea;
+}
+
+.board-card:hover::before {
+  left: 100%;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.board-card-content h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.board-owner {
+  color: #999;
+  font-size: 13px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(238, 90, 111, 0.4);
+}
+
+.board-card:hover .delete-btn {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 4px 12px rgba(238, 90, 111, 0.6);
+}

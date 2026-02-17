@@ -1,0 +1,98 @@
+SETUP INSTRUCTIONS
+
+Prerequisites:
+- Node.js (v16 or higher)
+- PostgreSQL (v12 or higher)
+- npm or yarn
+
+Backend Setup:
+1. Navigate to backend folder:
+   cd backend
+
+2. Install dependencies:
+   npm install
+
+3. Setup PostgreSQL database:
+   - Create a database named 'taskcollab'
+   - Update DATABASE_URL in .env file with your credentials
+
+4. Run database migrations:
+   npm run migrate
+
+5. Start the backend server:
+   npm run dev
+
+   Server will run on http://localhost:5000
+
+Frontend Setup:
+1. Navigate to frontend folder:
+   cd frontend
+
+2. Install dependencies:
+   npm install
+
+3. Start the frontend:
+   npm start
+
+   Application will open at http://localhost:3000
+
+Demo Credentials:
+After signup, you can create your own account OR:
+- Use the signup form to create a new account
+- Email: demo@example.com
+- Password: password123
+
+Features Implemented:
+✓ User authentication (signup/login)
+✓ Create/update/delete boards
+✓ Create/update/delete lists
+✓ Create/update/delete tasks
+✓ Drag and drop tasks between lists
+✓ Real-time updates via WebSocket
+✓ Activity history tracking
+✓ Search functionality
+✓ Pagination support
+✓ Assign users to tasks
+✓ Board member management
+
+Tech Stack:
+Backend:
+- Node.js + Express
+- PostgreSQL
+- Socket.io for real-time
+- JWT for authentication
+
+Frontend:
+- React
+- React Router
+- Socket.io client
+- React Beautiful DnD for drag-and-drop
+- Axios for API calls
+
+API Endpoints:
+POST   /api/auth/signup
+POST   /api/auth/login
+GET    /api/auth/profile
+
+GET    /api/boards
+POST   /api/boards
+GET    /api/boards/:id
+PUT    /api/boards/:id
+DELETE /api/boards/:id
+POST   /api/boards/:id/members
+DELETE /api/boards/:boardId/members/:userId
+
+GET    /api/lists/:boardId/lists
+POST   /api/lists/:boardId/lists
+PUT    /api/lists/:id
+DELETE /api/lists/:id
+
+GET    /api/tasks/:id
+POST   /api/tasks/:listId/tasks
+PUT    /api/tasks/:id
+DELETE /api/tasks/:id
+POST   /api/tasks/:taskId/assign
+DELETE /api/tasks/:taskId/assign/:userId
+GET    /api/tasks/search/:boardId
+
+GET    /api/activities/:boardId
