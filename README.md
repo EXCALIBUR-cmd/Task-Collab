@@ -806,8 +806,7 @@ PORT=3001 npm start
 5. **Socket.io vs WebRTC**: Socket.io for easier implementation; WebRTC for p2p
 
 ## 👥 Contributors
-
-- Your Name - Full Stack Development
+- Your Name - Maninder Singh
 
 ## 📄 License
 
